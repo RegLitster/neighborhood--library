@@ -6,18 +6,29 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        Book[] library = new Book[20];
-        library[0] = new Book(515, "234-1-53-3567234", "The Big Dog", true, "John Smith");
-        library[1] = new Book(964, "978-3-16-148410-0", "Lost in the Forest", false, "");
-        library[2] = new Book(256, "123-4-56-7891011", "Journey to the Stars", true, "Emily Watson");
-        library[3] = new Book(426, "321-9-87-6543210", "Secrets of the Ocean", false, "");
-        library[4] = new Book(254, "456-2-33-1122334", "The Last Horizon", true, "Michael Lee");
-        library[5] = new Book(986, "789-5-11-9988776", "Whispers in the Wind", false, "");
-        library[6] = new Book(783, "852-1-45-7639123", "Echoes of Tomorrow", false, "");
-        library[7] = new Book(642, "963-2-11-9988774", "Shadows of the Past", false, "");
-        library[8] = new Book(731, "741-6-89-1234567", "The Forgotten Realm", true, "Laura Bennett");
-        library[9] = new Book(859, "314-7-22-5566778", "Rain Over Midnight", false, "");
-        library[10] = new Book(920, "105-3-66-3344556", "Beneath the Iron Sky", true, "Kevin Stone");
+        Book[] library = {
+                new Book(515, "234-1-53-3567234", "The Big Dog", true, "John Smith"),
+                new Book(964, "978-3-16-148410-0", "Lost in the Forest", false, ""),
+                new Book(256, "123-4-56-7891011", "Journey to the Stars", true, "Emily Watson"),
+                new Book(426, "321-9-87-6543210", "Secrets of the Ocean", false, ""),
+                new Book(254, "456-2-33-1122334", "The Last Horizon", true, "Michael Lee"),
+                new Book(986, "789-5-11-9988776", "Whispers in the Wind", false, ""),
+                new Book(783, "852-1-45-7639123", "Echoes of Tomorrow", false, ""),
+                new Book(642, "963-2-11-9988774", "Shadows of the Past", false, ""),
+                new Book(731, "741-6-89-1234567", "The Forgotten Realm", true, "Laura Bennett"),
+                new Book(859, "314-7-22-5566778", "Rain Over Midnight", false, ""),
+                new Book(920, "105-3-66-3344556", "Beneath the Iron Sky", true, "Kevin Stone"),
+                new Book(374, "978-0-12-345678-9", "Winds of the North", false, ""),
+                new Book(582, "978-1-23-456789-0", "The Silent River", true, "Anna Carter"),
+                new Book(619, "978-0-19-876543-2", "Beneath Crimson Skies", false, ""),
+                new Book(407, "978-3-59-821234-5", "Legends of the Deep", true, "David Cho"),
+                new Book(293, "978-0-67-098765-4", "Shattered Reflections", false, ""),
+                new Book(835, "978-2-13-456789-1", "Through the Iron Gates", false, ""),
+                new Book(718, "978-4-56-123456-7", "The Clockmaker's Son", true, "Elena Ruiz"),
+                new Book(641, "978-7-89-654321-0", "Voices in the Fog", false, ""),
+                new Book(502, "978-9-87-654321-3", "A Song for the Fallen", true, "Mark Fields"),
+                new Book(176, "978-5-67-890123-4", "The Edge of Memory", false, ""),
+        };
 
 
         System.out.println("=== Welcome to The Library ===\n");
@@ -97,21 +108,21 @@ public class Main {
 
     public static void checkOut(Book[] inventory, int bookID, String name) {
 
-    for (Book book : inventory) {
-        if (book != null && book.getId() == bookID) {
-            if (!book.isCheckedout()) {
-                book.checkOut(name);
-                System.out.println("Book Checked Out\n");
-            } else {
-                System.out.println("That Book Is Not Available\n");
+        for (Book book : inventory) {
+            if (book != null && book.getId() == bookID) {
+                if (!book.isCheckedout()) {
+                    book.checkOut(name);
+                    System.out.println("Book Checked Out\n");
+                } else {
+                    System.out.println("That Book Is Not Available\n");
+                }
+                return;
             }
-            return;
         }
-    }
-    System.out.println("We Have No Record Of The Book\n");
+        System.out.println("We Have No Record Of The Book\n");
     }
 
-    public static void checkIn(Book[]inventory,int bookID){
+    public static void checkIn(Book[] inventory, int bookID) {
         for (Book book : inventory) {
             if (book != null && book.getId() == bookID) {
                 book.checkIn();
@@ -121,8 +132,6 @@ public class Main {
         }
         System.out.println("Could not find Book\n");
     }
-
-
 
 
 }
