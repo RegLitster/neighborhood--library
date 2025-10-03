@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import javax.xml.namespace.QName;
+
 public class Book {
     private int id;
     private String isbn;

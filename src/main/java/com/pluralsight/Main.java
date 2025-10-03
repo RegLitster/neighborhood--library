@@ -36,27 +36,30 @@ public class Main {
                     showAvailableBooks(library);
                     System.out.println("Would you like to Check Out a Book?\n 1: Yes\n 2: No");
                     int answer = input.nextInt();
+                    input.nextLine();
                     if (answer == 1) {
                         System.out.println("Please enter your name");
                         String name = input.nextLine();
-                        input.nextLine();
                         System.out.println("Please enter your Book ID");
                         int bookID = input.nextInt();
                         input.nextLine();
                         checkOut(library, bookID, name);
                     }
-                        System.out.println("Press ENTER to continue...");
-                        input.nextLine();
+                    System.out.println("Press ENTER to continue...");// this is just a break
+                    input.nextLine();
                     break;
                 case 2:
                     showCheckedOutBooks(library);
-                    System.out.println("Press C to check in\n Press X to go back to the main menu");
+                    System.out.println("C: to check in\nX: to go back to the main menu");
                     String checkIn = input.nextLine().trim().toLowerCase();
                     if (checkIn.equals("c")) {
                         System.out.println("Please enter the ID of the Book you would like to check in");
                         int bookID = input.nextInt();
-
+                        input.nextLine();
+                        checkIn(library, bookID);
                     }
+                    System.out.println("Press ENTER to continue...");// also a break
+                    input.nextLine();
                     break;
                 case 3:
                     System.out.println("Thank you for using the library!");
@@ -72,26 +75,27 @@ public class Main {
     }
 
 
-        public static void showAvailableBooks (Book[]inventory){
-            for (Book book : inventory) {
-                if (book != null && !book.isCheckedout()) {
-                    System.out.println("Title: " + book.getTitle() + " ISBN: " + book.getIsbn() + "  ID: " + book.getId());
+    public static void showAvailableBooks(Book[] inventory) {
+        for (Book book : inventory) {
+            if (book != null && !book.isCheckedout()) {
+                System.out.println("Title: " + book.getTitle() + " ISBN: " + book.getIsbn() + "  ID: " + book.getId());
 
-                }
-            }
-            System.out.println();
-        }
-
-        public static void showCheckedOutBooks (Book[]inventory){
-            for (Book book : inventory) {
-                if (book != null && book.isCheckedout()) {
-                    System.out.println("Checked Out By: " + book.getCheckedOutTo() + " ISBN: " + book.getIsbn() + " Title: " + book.getTitle() + "  ID: " + book.getId());
-                }
             }
         }
+        System.out.println();
+    }
+
+    public static void showCheckedOutBooks(Book[] inventory) {
+        for (Book book : inventory) {
+            if (book != null && book.isCheckedout()) {
+                System.out.println("Checked Out By: " + book.getCheckedOutTo() + " ISBN: " + book.getIsbn() + " Title: " + book.getTitle() + "  ID: " + book.getId());
+            }
+        }
+        System.out.println(); // these ar just to add a space between the lines
+    }
 
 
-public static void checkOut(Book[] inventory, int bookID, String name) {
+    public static void checkOut(Book[] inventory, int bookID, String name) {
 
     for (Book book : inventory) {
         if (book != null && book.getId() == bookID) {
@@ -107,15 +111,16 @@ public static void checkOut(Book[] inventory, int bookID, String name) {
     System.out.println("We Have No Record Of The Book\n");
     }
 
-
-
-    public static void checkIn (Book[]inventory,int bookID, String checkedInTo){
-            for (Book book : inventory) {
-                if (book != null && book.getId() == bookID) {
-
-                }
+    public static void checkIn(Book[]inventory,int bookID){
+        for (Book book : inventory) {
+            if (book != null && book.getId() == bookID) {
+                book.checkIn();
+                System.out.println("Book Checked In\n");
+                return;
             }
         }
+        System.out.println("Could not find Book\n");
+    }
 
 
 
